@@ -1,0 +1,101 @@
+.downloader {
+  padding: 2rem 0 3rem 0;
+  color: #fff;
+  text-align: center;
+}
+.formGroup {
+  position: relative;
+  margin: 0 auto;
+  display: table;
+  border-collapse: separate;
+  width: 60%;
+}
+
+.formGroup input {
+  width: calc(100% - 8rem);
+  font-size: 1.1rem;
+  padding: 0.9rem 0.9rem;
+  border: 0;
+  outline: none !important;
+  float: left;
+  height: inherit;
+}
+
+.btnGroup {
+  position: relative;
+  width: 8rem;
+  float: right;
+}
+.pasteBtn {
+  position: absolute;
+  pointer-events: unset;
+  color: rgb(73, 73, 73);
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  margin: 0.25rem 0 0 0;
+  padding: 0.6rem 0.7rem;
+  font-weight: 600;
+  top: 0;
+  left: -70px;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  cursor: pointer;
+}
+.pasteBtn:hover {
+  background-color: rgb(80, 80, 80);
+  color: #fff;
+}
+.btnGroup button {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.9rem 0.9rem;
+  border: 0;
+  background-color: #d6249f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0;
+  float: left;
+  height: inherit;
+  cursor: pointer;
+}
+.btnGroup button:hover {
+  background-color: #fd5949;
+}
+.formGroup::after {
+  content: "";
+  clear: both;
+}
+
+@media only screen and (max-width: 1399px) and (min-width: 1200px) {
+  .formGroup {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .formGroup {
+    width: 68%;
+  }
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .formGroup {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 767px) and (min-width: 576px) {
+    .formGroup {
+        width: 90%;
+      }
+}
+@media only screen and (max-width: 575px) and (min-width: 281px) {
+    .formGroup {
+        width: 98%;
+      }
+}
+@media only screen and (max-width: 280px) {
+    .formGroup {
+        width: 98%;
+      }
+}
