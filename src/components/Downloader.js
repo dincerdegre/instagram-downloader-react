@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { urlChecker } from "../utils/downloadHelper";
 import classes from "./Downloader.module.css";
 
 const Downloader = () => {
    const [isHasURLValue,setHasURLValue] = useState(false);
+   const [hasError,setHasError] = useState(false);
    const [urlValue,setURLValue] = useState("");
 
    const urlChangeHandler = (event) => {
@@ -34,9 +35,23 @@ const Downloader = () => {
 
     const submitHandler = async (event) => {
         event.preventDefault();
+        // Photo
+        // https://www.instagram.com/p/CeVu-OFttJQ/?utm_source=ig_web_copy_link
+        // Video
+        // https://www.instagram.com/p/CeTscJ9MpEM/?utm_source=ig_web_copy_link
+        // Reel
+        // https://www.instagram.com/reel/CeTzQo3jBN7/?utm_source=ig_web_copy_link
+        const url = urlChecker(urlValue);
+        if (url) {
+           setHasError(false);
+        } else {
+            setHasError(true);
+        }
+
     }
   return (
     <div className={classes.downloader}>
+        {hasError && <div className={classes.alertBox}>Error: URL is Not Supported</div>}
       <form onSubmit={submitHandler}>
         <div className={classes.formGroup}>
           <input type="text" id="url" placeholder="Paste URL" value={urlValue} onChange={urlChangeHandler} />

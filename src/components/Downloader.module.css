@@ -3,6 +3,17 @@
   color: #fff;
   text-align: center;
 }
+.alertBox {
+    margin:0 auto;
+    margin-bottom:1.5rem;
+    padding:0.4rem;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    background-color: #49646F;
+    text-align: center;
+    width: 60%;
+    border:1px solid #49646F;
+}
 .formGroup {
   position: relative;
   margin: 0 auto;
@@ -70,32 +81,32 @@
 }
 
 @media only screen and (max-width: 1399px) and (min-width: 1200px) {
-  .formGroup {
+  .formGroup,.alertBox {
     width: 60%;
   }
 }
 @media only screen and (max-width: 1199px) and (min-width: 992px) {
-  .formGroup {
+  .formGroup,.alertBox {
     width: 68%;
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  .formGroup {
+  .formGroup,.alertBox {
     width: 80%;
   }
 }
 @media only screen and (max-width: 767px) and (min-width: 576px) {
-    .formGroup {
+    .formGroup,.alertBox {
         width: 90%;
       }
 }
 @media only screen and (max-width: 575px) and (min-width: 281px) {
-    .formGroup {
+    .formGroup,.alertBox {
         width: 98%;
       }
 }
 @media only screen and (max-width: 280px) {
-    .formGroup {
+    .formGroup,.alertBox {
         width: 98%;
       }
 }
