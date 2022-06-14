@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classes from "./Main.module.css";
 import Downloader from "../Downloader";
 
-const Main = (props) => {
+const Main = () => {
   return (
     <main className="main">
       <div className="container">
@@ -16,7 +15,5 @@ const Main = (props) => {
     </main>
   );
 };
-
-Main.propTypes = {};
 
 export default Main;

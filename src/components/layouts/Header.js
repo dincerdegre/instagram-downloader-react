@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import classes from './Header.module.css'
 
-const Header = props => {
+const Header = () => {
   return (
     <header className="header">
         <div className="container">
@@ -12,6 +11,5 @@ const Header = props => {
   )
 }
 
-Header.propTypes = {}
 
 export default Header
