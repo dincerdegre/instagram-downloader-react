@@ -32,6 +32,10 @@
   height: inherit;
 }
 
+.formGroup input.inputError {
+ background-color: #ff9a9a;
+}
+
 .btnGroup {
   position: relative;
   width: 8rem;

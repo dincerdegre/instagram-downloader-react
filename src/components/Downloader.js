@@ -1,63 +1,91 @@
+/* eslint-disable */
 import React, { useState } from "react";
+import axios from "axios";
+import env from "react-dotenv";
 import { urlChecker } from "../utils/downloadHelper";
+import PropTypes from 'prop-types'
 import classes from "./Downloader.module.css";
+axios.defaults.headers.common["Authorization"] = `Bearer ${env.REACT_APP_API_KEY}`;
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
-const Downloader = () => {
-   const [isHasURLValue,setHasURLValue] = useState(false);
-   const [hasError,setHasError] = useState(false);
-   const [urlValue,setURLValue] = useState("");
+const Downloader = ({onResult}) => {
+  const [isHasURLValue, setHasURLValue] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [urlValue, setURLValue] = useState("");
 
-   const urlChangeHandler = (event) => {
-        setURLValue(event.target.value);
-        if(event.target.value.length > 0){
-             setHasURLValue(true);
-        }else{
-             setHasURLValue(false);
-        }
-   };
+  const urlChangeHandler = (event) => {
+    setHasError(false);
+    setURLValue(event.target.value);
+    if (event.target.value.length > 0) {
+      setHasURLValue(true);
+    } else {
+      setHasURLValue(false);
+    }
+  };
 
-   const clearInputHandler = () => {
-        setURLValue("");
+  const clearInputHandler = () => {
+    setURLValue("");
+    setHasURLValue(false);
+    setHasError(false);
+  };
+
+  const pasteInputHandler = async () => {
+    setHasError(false);
+    await navigator.clipboard.readText().then((text) => {
+      setURLValue(text);
+      if (text.length > 0) {
+        setHasURLValue(true);
+      } else {
         setHasURLValue(false);
-    }
+      }
+    });
+  };
 
-    const pasteInputHandler = async () => {
-        await navigator.clipboard.readText().then(text => {
-            setURLValue(text);
-            if(text.length > 0){
-                 setHasURLValue(true);
-            }else{
-                 setHasURLValue(false);
-            }
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    onResult(null);
+    const url = urlChecker(urlValue);
+    if (url) {
+      setHasError(false);
+      try {
+        const data = {
+          url,
         }
-        );
-    };
-
-    const submitHandler = async (event) => {
-        event.preventDefault();
-        // Photo
-        // https://www.instagram.com/p/CeVu-OFttJQ/?utm_source=ig_web_copy_link
-        // Video
-        // https://www.instagram.com/p/CeTscJ9MpEM/?utm_source=ig_web_copy_link
-        // Reel
-        // https://www.instagram.com/reel/CeTzQo3jBN7/?utm_source=ig_web_copy_link
-        const url = urlChecker(urlValue);
-        if (url) {
-           setHasError(false);
-        } else {
-            setHasError(true);
-        }
-
+        const response = await axios.post(env.REACT_APP_API_URL + "/instagram", data);
+        onResult(response.data);
+      } catch (error) {
+        setHasError(true);
+      }
+    } else {
+      setHasError(true);
     }
+  };
   return (
     <div className={classes.downloader}>
-        {hasError && <div className={classes.alertBox}>Error: URL is Not Supported</div>}
+      {hasError && (
+        <div className={classes.alertBox}>Error: URL is Not Supported or Private Video</div>
+      )}
       <form onSubmit={submitHandler}>
         <div className={classes.formGroup}>
-          <input type="text" id="url" placeholder="Paste URL" value={urlValue} onChange={urlChangeHandler} />
+          <input
+            type="text"
+            id="url"
+            className={hasError ? classes.inputError : ""}
+            placeholder="Paste URL"
+            value={urlValue}
+            onChange={urlChangeHandler}
+          />
           <div className={classes.btnGroup}>
-          {!isHasURLValue && <span onClick={pasteInputHandler} className={classes.miniBtn}><span>Paste</span></span>}
-          {isHasURLValue && <span onClick={clearInputHandler} className={classes.miniBtn}><span>Clear</span></span>}
+            {!isHasURLValue && (
+              <span onClick={pasteInputHandler} className={classes.miniBtn}>
+                <span>Paste</span>
+              </span>
+            )}
+            {isHasURLValue && (
+              <span onClick={clearInputHandler} className={classes.miniBtn}>
+                <span>Clear</span>
+              </span>
+            )}
             <button className={classes.button} type="submit">
               Download
             </button>
@@ -68,5 +96,8 @@ const Downloader = () => {
   );
 };
 
+Downloader.propTypes = {
+  onResult: PropTypes.func.isRequired
+}
 
 export default Downloader;
