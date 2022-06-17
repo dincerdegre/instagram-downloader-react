@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+.header {
+  height: 60px;
+  background-color: #f5f5f5;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+  background-image:linear-gradient(to right, #d6249f, #fd5949);
+  padding:2rem 0 3rem 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.faq {
+  background-color: #f5f5f5;
+  padding:2rem 0 3rem 0;
+}
+.container {
+  margin: 0 auto;
+  width: 1200px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flexible {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+@media only screen and (max-width: 1399px) and (min-width: 1200px) {
+  .container {
+    width:1200px;
+  }
+}
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+  .container {
+    width: 99%;
+  }
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .container {
+    width: 99%;
+  }
+}
+@media only screen and (max-width: 767px) and (min-width: 576px) {
+  .container {
+    width: 99%;
+  }
+}
+@media only screen and (max-width: 575px) and (min-width: 281px) {
+  .container {
+    width: 99%;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .container {
+    width: 99%;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
