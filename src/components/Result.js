@@ -11,6 +11,7 @@ const Result = ({result}) => {
 }
 
 Result.propTypes = {
+    result: PropTypes.object
 }
 
 export default Result

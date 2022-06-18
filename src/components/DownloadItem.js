@@ -10,6 +10,8 @@ const DownloadItem = ({image}) => {
   )
 }
 
-DownloadItem.propTypes = {}
+DownloadItem.propTypes = {
+    image: PropTypes.string
+}
 
 export default DownloadItem
