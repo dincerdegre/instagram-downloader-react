@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import classes from "./Downloader.module.css";
 axios.defaults.headers.common["Authorization"] = `Bearer d25adb96-7fd4-48d8-b5eb-072037620f70`;
 axios.defaults.headers.post["Content-Type"] = "application/json";
+// axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
 
 const Downloader = ({onResult}) => {
   const [isHasURLValue, setHasURLValue] = useState(false);
