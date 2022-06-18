@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useState } from "react";
 import axios from "axios";
-import env from "react-dotenv";
 import { urlChecker } from "../utils/downloadHelper";
 import PropTypes from 'prop-types'
 import classes from "./Downloader.module.css";
