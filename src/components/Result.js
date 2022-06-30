@@ -4,7 +4,7 @@ import DownloadItem from './DownloadItem'
 
 const Result = ({result}) => {
   return (
-    <div className='container flexible'>{ result && result.dataInfo.map((element,index) => {
+    <div className='container flexibleCenter resultFlex'>{ result && result.dataInfo.map((element,index) => {
       const imageElement = encodeURIComponent(element.image.toString());
       const downloadElement = encodeURIComponent(element.url.toString());
       console.log(imageElement);

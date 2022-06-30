@@ -23,6 +23,12 @@
   align-items: center;
 }
 
+.flexibleCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;
@@ -99,15 +105,33 @@
   .container {
     width: 99%;
   }
+  .resultFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media only screen and (max-width: 575px) and (min-width: 281px) {
   .container {
     width: 99%;
   }
+  .resultFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media only screen and (max-width: 280px) {
   .container {
     width: 99%;
+  }
+  .resultFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
