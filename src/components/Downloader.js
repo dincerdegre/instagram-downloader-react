@@ -8,7 +8,7 @@ axios.defaults.headers.common["Authorization"] = `Bearer d25adb96-7fd4-48d8-b5eb
 axios.defaults.headers.post["Content-Type"] = "application/json";
 // axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
 
-const Downloader = ({onResult}) => {
+const Downloader = ({onResult,onLoading}) => {
   const [isHasURLValue, setHasURLValue] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [urlValue, setURLValue] = useState("");
@@ -43,6 +43,7 @@ const Downloader = ({onResult}) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    onLoading(true);
     onResult(null);
     const url = urlChecker(urlValue);
     if (url) {
@@ -52,11 +53,14 @@ const Downloader = ({onResult}) => {
           url,
         }
         const response = await axios.post("https://social-downloader-degre.herokuapp.com/instagram", data);
+        onLoading(false);
         onResult(response.data);
       } catch (error) {
+        onLoading(false);
         setHasError(true);
       }
     } else {
+      onLoading(false);
       setHasError(true);
     }
   };
